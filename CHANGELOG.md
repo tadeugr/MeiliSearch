@@ -7,3 +7,4 @@
   - Fixed the core benchmark (#576)
   - Publish an ARMv7 and ARMv8 binaries on releases (#540 and #581)
   - Fixing a bug where the result of the update status after the first update was empty (#542)
+  - Improve search highlight and crop (#549 and #565)
