@@ -16,7 +16,7 @@ jobs:
       run: |
         git remote add upstream https://github.com/meilisearch/MeiliSearch.git
         git fetch upstream
-        git pull upstream master
+        git pull --allow-unrelated-histories upstream master
 
     - name: Get REVISION
       run: |
