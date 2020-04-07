@@ -21,24 +21,29 @@ jobs:
         echo $(git rev-list --count HEAD) > /tmp/revision
         cat /tmp/revision
 
-    #- name: Build tag
-    #  run: docker build -t ${GITHUB_REPOSITORY}:$GITHUB_RUN_NUMBER .
+    - name: Build tag
+      run: |
+        cd /tmp/MeiliSearch
+        docker build -t meilisearch:$(cat /tmp/revision) .
 
-    #- name: Tag :latest
-    #  run: docker tag ${GITHUB_REPOSITORY}:$GITHUB_RUN_NUMBER ${GITHUB_REPOSITORY}:latest
+    - name: Tag :latest
+      run: docker tag meilisearch:$(cat /tmp/revision) ${GITHUB_REPOSITORY}:latest
+      run: |
+        cd /tmp/MeiliSearch
+        docker tag meilisearch:$(cat /tmp/revision) meilisearch:latest
 
-    #- name: Login to docker hub
-    #  uses: actions-hub/docker/login@master
-    #  env:
-    #    DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-    #    DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Login to docker hub
+      uses: actions-hub/docker/login@master
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-    #- name: Push tag to docker hub
-    #  uses: actions-hub/docker@master
-    #  with:
-    #    args: push ${GITHUB_REPOSITORY}:$GITHUB_RUN_NUMBER
+    - name: Push tag to docker hub
+      uses: actions-hub/docker@master
+      with:
+        args: push meilisearch:$(cat /tmp/revision)
 
-    #- name: Push latest to docker hub
-    #  uses: actions-hub/docker@master
-    #  with:
-    #    args: push ${GITHUB_REPOSITORY}:latest
+    - name: Push latest to docker hub
+      uses: actions-hub/docker@master
+      with:
+        args: push meilisearch:latest
