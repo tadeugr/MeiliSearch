@@ -20,6 +20,25 @@ jobs:
         cd /tmp/MeiliSearch
         echo $(git rev-list --count HEAD) > /tmp/revision
         cat /tmp/revision
+     
+    - run: echo ::set-output name=number::$(cat /tmp/revision)
+      id: revision
+
+    - run: echo ${{ steps.revision.outputs.number }}
+      
+    - uses: actions/hello-world-javascript-action@master
+        with:
+          who-to-greet: ${{ steps.revision.outputs.number }}
+        
+    #- name: set environment variables
+    #    uses: allenevans/set-env@v1.0.0
+    #    with:
+    #      REVISION: echo $(cat /tmp/revision)
+
+    #- name: Printenv
+    #    run: |
+    #      echo "REVISION=${REVISION}"
+    #      printenv
 
     - name: Build tag
       run: |
