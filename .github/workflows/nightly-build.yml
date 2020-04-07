@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Checkout meilisearch/MeiliSearch
-      run: git clone https://github.com/meilisearch/MeiliSearch.git /tmp
+      run: git clone https://github.com/meilisearch/MeiliSearch.git /tmp/MeiliSearch
 
     - name: Change dir
       run: cd /tmp/MeiliSearch
