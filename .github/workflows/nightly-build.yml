@@ -28,12 +28,12 @@ jobs:
     - name: Build tag
       run: |
         cd /tmp/MeiliSearch
-        docker build -t meilisearch:${{ steps.revision.outputs.number }} .
+        docker build -t tadeugr/meilisearch:${{ steps.revision.outputs.number }} .
 
     - name: Tag :latest
       run: |
         cd /tmp/MeiliSearch
-        docker tag meilisearch:${{ steps.revision.outputs.number }} meilisearch:latest
+        docker tag tadeugr/meilisearch:${{ steps.revision.outputs.number }} tadeugr/meilisearch:latest
 
     - name: Login to docker hub
       uses: actions-hub/docker/login@master
