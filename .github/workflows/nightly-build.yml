@@ -12,27 +12,28 @@ jobs:
 
     - uses: actions/checkout@master
 
-    - name: Checkout meilisearch/MeiliSearch
-      run: git clone https://github.com/meilisearch/MeiliSearch.git /tmp/MeiliSearch
+    - name: Fetch upstream
+      run: |
+        git remote add upstream https://github.com/meilisearch/MeiliSearch.git
+        git fetch upstream
+        git pull upstream master
 
     - name: Get REVISION
       run: |
-        cd /tmp/MeiliSearch
         echo $(git rev-list --count HEAD) > /tmp/revision
         cat /tmp/revision
     
     #::set-env 
-    - run: echo ::set-output name=number::$(cat /tmp/revision)
+    - name: Set revision variable
+      run: echo ::set-output name=number::$(cat /tmp/revision)
       id: revision
 
     - name: Build tag
       run: |
-        cd /tmp/MeiliSearch
         docker build -t tadeugr/meilisearch:${{ steps.revision.outputs.number }} .
 
     - name: Tag :latest
       run: |
-        cd /tmp/MeiliSearch
         docker tag tadeugr/meilisearch:${{ steps.revision.outputs.number }} tadeugr/meilisearch:latest
 
     - name: Login to docker hub
