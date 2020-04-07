@@ -15,14 +15,11 @@ jobs:
     - name: Checkout meilisearch/MeiliSearch
       run: git clone https://github.com/meilisearch/MeiliSearch.git /tmp/MeiliSearch
 
-    - name: Change dir
-      run: cd /tmp/MeiliSearch
-
     - name: Get REVISION
-      run: echo $(git rev-list --count HEAD) > /tmp/revision
-
-    - name: Show REVISION
-      run: cat /tmp/revision
+      run: |
+        cd /tmp/MeiliSearch
+        echo $(git rev-list --count HEAD) > /tmp/revision
+        cat /tmp/revision
 
     #- name: Build tag
     #  run: docker build -t ${GITHUB_REPOSITORY}:$GITHUB_RUN_NUMBER .
