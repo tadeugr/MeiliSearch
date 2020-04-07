@@ -27,7 +27,6 @@ jobs:
         docker build -t meilisearch:$(cat /tmp/revision) .
 
     - name: Tag :latest
-      run: docker tag meilisearch:$(cat /tmp/revision) ${GITHUB_REPOSITORY}:latest
       run: |
         cd /tmp/MeiliSearch
         docker tag meilisearch:$(cat /tmp/revision) meilisearch:latest
