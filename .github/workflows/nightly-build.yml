@@ -3,7 +3,7 @@ name: Nightly build
 on:
   push
   schedule:
-    - cron:  '00 04 * * *'
+      - cron: '0 0 * * *' # Once per day at midnight
 
 jobs:
 
