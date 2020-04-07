@@ -15,6 +15,9 @@ jobs:
     - name: Checkout meilisearch/MeiliSearch
       run: git clone https://github.com/meilisearch/MeiliSearch.git
 
+    - name: Change dir
+      run: cd meilisearch/MeiliSearch
+
     - name: Get REVISION
       run: echo $(git rev-list --count HEAD) > /tmp/revision
 
