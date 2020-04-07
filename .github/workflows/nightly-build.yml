@@ -16,6 +16,8 @@ jobs:
       run: |
         git remote add upstream https://github.com/meilisearch/MeiliSearch.git
         git fetch upstream
+        git config --global user.name "anonymous"
+        git config --global user.email "anonymous@pipeline.com"
         git pull --allow-unrelated-histories upstream master
 
     - name: Get REVISION
