@@ -44,9 +44,9 @@ jobs:
     - name: Push tag to docker hub
       uses: actions-hub/docker@master
       with:
-        args: push meilisearch:${{ steps.revision.outputs.number }}
+        args: push tadeugr/meilisearch:${{ steps.revision.outputs.number }}
 
     - name: Push latest to docker hub
       uses: actions-hub/docker@master
       with:
-        args: push meilisearch:latest
+        args: push tadeugr/meilisearch:latest
