@@ -27,8 +27,8 @@ jobs:
     - run: echo ${{ steps.revision.outputs.number }}
       
     - uses: actions/hello-world-javascript-action@master
-        with:
-          who-to-greet: ${{ steps.revision.outputs.number }}
+      with:
+        who-to-greet: ${{ steps.revision.outputs.number }}
         
     #- name: set environment variables
     #    uses: allenevans/set-env@v1.0.0
