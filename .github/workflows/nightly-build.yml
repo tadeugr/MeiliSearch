@@ -22,7 +22,7 @@ jobs:
         cat /tmp/revision
     
     #::set-env 
-    - run: echo ::set-output name=number::${{ steps.revision.outputs.number }}
+    - run: echo ::set-output name=number::$(cat /tmp/revision)
       id: revision
 
     - name: Build tag
